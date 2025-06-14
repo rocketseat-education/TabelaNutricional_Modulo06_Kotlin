@@ -9,7 +9,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import androidx.compose.ui.unit.dp
 import com.rocketseat.egitof.tabelanutricional.ui.theme.Primary
 import com.rocketseat.egitof.tabelanutricional.ui.theme.TabelaNutricionalTheme
 import com.rocketseat.egitof.tabelanutricional.ui.theme.Typography
@@ -22,9 +21,9 @@ fun PrimaryButton(modifier: Modifier = Modifier, text: String, onClick: () -> Un
             containerColor = Primary,
         ),
         elevation = ButtonDefaults.elevatedButtonElevation(
-            defaultElevation = 4.dp
+            defaultElevation = TabelaNutricionalTheme.sizing.xs
         ),
-        shape = RoundedCornerShape(size = 16.dp),
+        shape = RoundedCornerShape(size = TabelaNutricionalTheme.sizing.md),
         onClick = onClick
     ) {
         Text(
