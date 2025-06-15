@@ -14,4 +14,7 @@
     <string name="valor_kcal">%1$s kcal</string>
     <string name="valor_g">%1$s g</string>
     <string name="valor_mg">%1$s mg</string>
+    <string name="tempo_de_leitura_da_noticia">%1$s MIN</string>
+    <string name="ola_usuario">Olá %1$s!</string>
+    <string name="seja_bem_vindo_de_volta">Seja bem-vindo de volta!</string>
 </resources>

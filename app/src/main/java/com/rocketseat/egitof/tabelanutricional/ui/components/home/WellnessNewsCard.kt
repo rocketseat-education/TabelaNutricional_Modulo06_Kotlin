@@ -14,19 +14,16 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewLightDark
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rocketseat.egitof.tabelanutricional.R
 import com.rocketseat.egitof.tabelanutricional.ui.theme.TabelaNutricionalTheme
 import com.rocketseat.egitof.tabelanutricional.ui.theme.TabelaNutricionalTheme.sizing
 import com.rocketseat.egitof.tabelanutricional.ui.theme.Typography
-import java.nio.file.WatchEvent
 
 enum class WellnessNewsTag(
     val description: String
@@ -72,17 +69,55 @@ fun WellnessNewsCard(
                         .padding(horizontal = sizing.sm),
                     style = Typography.titleSmall.copy(fontSize = 12.sp),
                     text = wellnessNews.tags[index].description,
-                    color = MaterialTheme.colorScheme.onBackground
                 )
             }
-
         }
+        Text(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = sizing.md),
+            text = wellnessNews.title,
+            style = Typography.titleSmall,
+            minLines = 3,
+            maxLines = 3,
+            overflow = TextOverflow.Ellipsis
+        )
+        
+        Text(
+            text = stringResource(
+                R.string.tempo_de_leitura_da_noticia,
+                wellnessNews.readTimeInMinutes
+            ),
+            style = Typography.titleSmall.copy(color = MaterialTheme.colorScheme.onSecondary)
+        )
     }
 }
 
 @Preview(showBackground = true)
 @Composable
 private fun WellnessNewsCardPreview() {
+    TabelaNutricionalTheme {
+        WellnessNewsCard(
+            modifier = Modifier
+                .padding(sizing.md)
+                .width(sizing.x4l),
+            wellnessNews = WellnessNews(
+                title = "A importância da tabela nutricional na alimentação consciente",
+                readTimeInMinutes = 5,
+                imageRes = R.drawable.img_nutritional_news_1,
+                tags = listOf(
+                    WellnessNewsTag.WELLNESS,
+                    WellnessNewsTag.NUTRITION,
+                    WellnessNewsTag.FOOD_EDUCATION
+                )
+            )
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun WellnessNewsCardListPreview() {
     TabelaNutricionalTheme {
         LazyRow(
             modifier = Modifier.padding(sizing.md),
@@ -98,6 +133,7 @@ private fun WellnessNewsCardPreview() {
                         tags = listOf(
                             WellnessNewsTag.WELLNESS,
                             WellnessNewsTag.NUTRITION,
+                            WellnessNewsTag.FOOD_EDUCATION
                         )
                     )
                 )

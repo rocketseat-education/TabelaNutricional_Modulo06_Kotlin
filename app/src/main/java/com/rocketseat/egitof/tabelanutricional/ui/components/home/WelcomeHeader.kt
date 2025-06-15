@@ -39,6 +39,7 @@ private const val NOTIFICATION_BADGE_OFFSET_Y_RATIO = 0.2f
 @Composable
 fun WelcomeHeader(
     modifier: Modifier = Modifier,
+    userName: String,
     hasNewNotification: Boolean = true,
     onNotificationBellClick: () -> Unit = { }
 ) {
@@ -61,13 +62,13 @@ fun WelcomeHeader(
         ) {
             Text(
                 modifier = Modifier.fillMaxWidth(),
-                text = "Olá Marcos!",
+                text = stringResource(R.string.ola_usuario, userName),
                 style = Typography.headlineMedium
             )
             Spacer(modifier = Modifier.height(TabelaNutricionalTheme.sizing.x2))
             Text(
                 modifier = Modifier.fillMaxWidth(),
-                text = "Seja bem-vindo de volta!",
+                text = stringResource(R.string.seja_bem_vindo_de_volta),
                 style = Typography.bodyLarge.copy(color = MaterialTheme.colorScheme.onSecondary)
             )
         }
@@ -83,8 +84,9 @@ fun WelcomeHeader(
                     .drawWithContent {
                         drawContent()
 
-                        if(hasNewNotification) {
-                            val circleRadius = size.minDimension / NOTIFICATION_BADGE_CIRCLE_RADIUS_RATIO
+                        if (hasNewNotification) {
+                            val circleRadius =
+                                size.minDimension / NOTIFICATION_BADGE_CIRCLE_RADIUS_RATIO
                             drawCircle(
                                 color = Color.White,
                                 radius = circleRadius,
@@ -114,7 +116,9 @@ fun WelcomeHeader(
 @Composable
 private fun WelcomeHeaderWithNewNotificationPreview() {
     TabelaNutricionalTheme {
-        WelcomeHeader(modifier = Modifier.padding(TabelaNutricionalTheme.sizing.md))
+        WelcomeHeader(
+            modifier = Modifier.padding(TabelaNutricionalTheme.sizing.md), userName = "Marcos"
+        )
     }
 }
 
@@ -122,6 +126,8 @@ private fun WelcomeHeaderWithNewNotificationPreview() {
 @Composable
 private fun WelcomeHeaderWithoutNewNotificationPreview() {
     TabelaNutricionalTheme {
-        WelcomeHeader(modifier = Modifier.padding(TabelaNutricionalTheme.sizing.md), hasNewNotification = false)
+        WelcomeHeader(
+            modifier = Modifier.padding(TabelaNutricionalTheme.sizing.md), userName = "Karina", hasNewNotification = false
+        )
     }
 }
