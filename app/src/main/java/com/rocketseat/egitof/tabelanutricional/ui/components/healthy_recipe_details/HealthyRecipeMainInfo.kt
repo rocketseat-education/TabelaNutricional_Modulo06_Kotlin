@@ -60,7 +60,6 @@ fun HealthyRecipeMainInfo(
                 )
                 Text(
                     text = stringResource(R.string.valor_g, totalPortionInGrams),
-
                 )
             }
         }
