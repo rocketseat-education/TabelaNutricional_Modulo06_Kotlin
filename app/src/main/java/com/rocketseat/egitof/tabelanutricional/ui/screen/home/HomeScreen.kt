@@ -19,10 +19,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import com.rocketseat.egitof.tabelanutricional.R
-import com.rocketseat.egitof.tabelanutricional.ui.components.home.HealthyRecipe
+import com.rocketseat.egitof.tabelanutricional.data.model.HealthyRecipe
+import com.rocketseat.egitof.tabelanutricional.data.model.WellnessNews
+import com.rocketseat.egitof.tabelanutricional.data.model.mock.mockHealthyRecipes
+import com.rocketseat.egitof.tabelanutricional.data.model.mock.mockWellnessNews
 import com.rocketseat.egitof.tabelanutricional.ui.components.home.HealthyRecipeCard
 import com.rocketseat.egitof.tabelanutricional.ui.components.home.WelcomeHeader
-import com.rocketseat.egitof.tabelanutricional.ui.components.home.WellnessNews
 import com.rocketseat.egitof.tabelanutricional.ui.components.home.WellnessNewsCard
 import com.rocketseat.egitof.tabelanutricional.ui.theme.TabelaNutricionalTheme
 import com.rocketseat.egitof.tabelanutricional.ui.theme.TabelaNutricionalTheme.sizing

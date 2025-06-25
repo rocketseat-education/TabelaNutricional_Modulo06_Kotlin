@@ -1,6 +1,5 @@
 package com.rocketseat.egitof.tabelanutricional.ui.components.home
 
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -20,21 +19,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.rocketseat.egitof.tabelanutricional.R
+import com.rocketseat.egitof.tabelanutricional.data.model.HealthyRecipe
 import com.rocketseat.egitof.tabelanutricional.ui.theme.TabelaNutricionalTheme
 import com.rocketseat.egitof.tabelanutricional.ui.theme.TabelaNutricionalTheme.sizing
 import com.rocketseat.egitof.tabelanutricional.ui.theme.Typography
-import java.util.UUID
-
-data class HealthyRecipe(
-    val id: UUID = UUID.randomUUID(),
-    val name: String,
-    @DrawableRes val imageRes: Int,
-    val calories: Float,
-    val proteins: Float,
-    val carbohydrates: Float,
-)
 
 @Composable
 fun HealthyRecipeCard(
@@ -102,7 +91,10 @@ private fun HealthyRecipeCardPreview() {
                         imageRes = R.drawable.img_assorted_salad,
                         calories = 221.15f,
                         proteins = 13.13f,
-                        carbohydrates = 22.80f
+                        carbohydrates = 22.80f,
+                        sugar = 4.88f,
+                        fat = 5.18f,
+                        totalPortionInGrams = 240
                     )
                 )
             }
