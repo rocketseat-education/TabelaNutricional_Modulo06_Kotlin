@@ -12,15 +12,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rocketseat.egitof.tabelanutricional.R
+import com.rocketseat.egitof.tabelanutricional.data.model.NutrientUnit
 import com.rocketseat.egitof.tabelanutricional.ui.theme.TabelaNutricionalTheme
 import com.rocketseat.egitof.tabelanutricional.ui.theme.TabelaNutricionalTheme.sizing
 import com.rocketseat.egitof.tabelanutricional.ui.theme.Typography
 
-enum class NutrientUnit(val symbol: String) {
-    GRAM(symbol = "g"),
-    MILLIGRAM(symbol = "g"),
-    CALORIES(symbol = "kcal"),
-}
+
 
 @Composable
 fun HealthyRecipeNutrientInfo(
@@ -56,7 +53,7 @@ private fun HealthyRecipeNutrientInfoPreview() {
                 modifier = Modifier.padding(16.dp),
                 name = "Energia",
                 value = 221.15f,
-                unit = NutrientUnit.CALORIES,
+                unit = NutrientUnit.KCAL,
             )
             HealthyRecipeNutrientInfo(
                 modifier = Modifier.padding(horizontal = 16.dp).padding(bottom = 16.dp),
