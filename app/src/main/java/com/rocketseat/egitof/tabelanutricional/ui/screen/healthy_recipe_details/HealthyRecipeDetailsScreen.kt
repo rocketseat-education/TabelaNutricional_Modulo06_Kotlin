@@ -1,5 +1,10 @@
 package com.rocketseat.egitof.tabelanutricional.ui.screen.healthy_recipe_details
 
+import androidx.compose.animation.Animatable
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -18,11 +23,16 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -40,11 +50,42 @@ import com.rocketseat.egitof.tabelanutricional.ui.theme.Primary
 import com.rocketseat.egitof.tabelanutricional.ui.theme.TabelaNutricionalTheme
 import com.rocketseat.egitof.tabelanutricional.ui.theme.TabelaNutricionalTheme.sizing
 
+private const val MAX_NUTRIENT_BAR_VALUE = 35f
+private const val HEALTHY_RECIPE_IMAGE_SCALE = 1.2f
+private const val HEALTHY_RECIPE_IMAGE_ROTATION = 360f
+private const val HEALTHY_RECIPE_IMAGE_ANIMATION_DURATION_IN_MILLIS = 1000
+
 @Composable
 fun HealthyRecipeDetailsScreen(
     modifier: Modifier = Modifier,
     healthyRecipe: HealthyRecipe
 ) {
+    var isImageVisible by remember { mutableStateOf(true) }
+    val scale = remember { Animatable(initialValue = 0f) }
+    val rotation = remember { Animatable(initialValue = 0f) }
+
+    LaunchedEffect(key1 = Unit) {
+        isImageVisible = true
+
+        scale.animateTo(
+            targetValue = HEALTHY_RECIPE_IMAGE_SCALE,
+            animationSpec = tween(
+                durationMillis = HEALTHY_RECIPE_IMAGE_ANIMATION_DURATION_IN_MILLIS,
+                easing = LinearEasing
+            )
+        )
+    }
+
+    LaunchedEffect(key1 = Unit) {
+        rotation.animateTo(
+            targetValue = HEALTHY_RECIPE_IMAGE_ROTATION,
+            animationSpec = tween(
+                durationMillis = HEALTHY_RECIPE_IMAGE_ANIMATION_DURATION_IN_MILLIS,
+                easing = FastOutSlowInEasing
+            )
+        )
+    }
+
     Box(
         modifier = modifier
             .fillMaxSize()
@@ -79,15 +120,21 @@ fun HealthyRecipeDetailsScreen(
                 )
             }
 
-            Image(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .align(Alignment.CenterHorizontally)
-                    .scale(1.2f),
-                painter = painterResource(id = R.drawable.img_dish_with_shadow),
-                contentScale = ContentScale.FillWidth,
-                contentDescription = stringResource(id = R.string.imagem_item_tabela_nutricional)
-            )
+            if(isImageVisible) {
+                Image(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .graphicsLayer {
+                            scaleX = scale.value
+                            scaleY = scale.value
+                            rotationZ = rotation.value
+                        }
+                        .align(Alignment.CenterHorizontally),
+                    painter = painterResource(id = R.drawable.img_dish_with_shadow),
+                    contentScale = ContentScale.FillWidth,
+                    contentDescription = stringResource(id = R.string.imagem_item_tabela_nutricional)
+                )
+            }
 
             HealthyRecipeMainInfo(
                 recipeName = healthyRecipe.name,
@@ -139,22 +186,22 @@ private fun HealthyRecipeNutrientBarList(
         HealthyRecipeNutrientBar(
             name = stringResource(R.string.proteinas),
             value = healthyRecipe.proteins,
-            maxValue = 35f
+            maxValue = MAX_NUTRIENT_BAR_VALUE
         )
         HealthyRecipeNutrientBar(
             name = stringResource(R.string.carboidratos),
             value = healthyRecipe.carbohydrates,
-            maxValue = 35f
+            maxValue = MAX_NUTRIENT_BAR_VALUE
         )
         HealthyRecipeNutrientBar(
             name = stringResource(R.string.acucar),
             value = healthyRecipe.sugar,
-            maxValue = 35f
+            maxValue = MAX_NUTRIENT_BAR_VALUE
         )
         HealthyRecipeNutrientBar(
             name = stringResource(R.string.gorduras),
             value = healthyRecipe.fat,
-            maxValue = 35f
+            maxValue = MAX_NUTRIENT_BAR_VALUE
         )
     }
 }
