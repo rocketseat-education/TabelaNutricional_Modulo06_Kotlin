@@ -12,6 +12,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.rocketseat.egitof.tabelanutricional.data.model.mock.mockHealthyRecipes
+import com.rocketseat.egitof.tabelanutricional.ui.screen.healthy_recipe_details.HealthyRecipeDetailsScreen
 import com.rocketseat.egitof.tabelanutricional.ui.theme.LocalSizing
 import com.rocketseat.egitof.tabelanutricional.ui.theme.TabelaNutricionalTheme
 
@@ -24,9 +26,9 @@ class MainActivity : ComponentActivity() {
                 val sizing = LocalSizing.current
 
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding).width(TabelaNutricionalTheme.sizing.sm)
+                    HealthyRecipeDetailsScreen(
+                        modifier = Modifier.padding(innerPadding),
+                        healthyRecipe = mockHealthyRecipes.first()
                     )
                 }
             }

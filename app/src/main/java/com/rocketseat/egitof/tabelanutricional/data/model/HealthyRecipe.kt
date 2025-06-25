@@ -13,6 +13,7 @@ data class HealthyRecipe(
     val fiber: HealthyRecipeNutrient,
     val sugar: HealthyRecipeNutrient,
     val fat: HealthyRecipeNutrient,
+    val totalFat: HealthyRecipeNutrient,
     val saturatedFat: HealthyRecipeNutrient,
     val transFat: HealthyRecipeNutrient,
     val cholesterol: HealthyRecipeNutrient,

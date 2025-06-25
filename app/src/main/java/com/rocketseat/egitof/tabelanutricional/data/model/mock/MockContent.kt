@@ -63,6 +63,11 @@ private val referenceRecipe = HealthyRecipe(
         unit = NutrientUnit.GRAM,
         nameRes = R.string.gorduras
     ),
+    totalFat = HealthyRecipeNutrient(
+        value = 5.18f,
+        unit = NutrientUnit.GRAM,
+        nameRes = R.string.gorduras_totais
+    ),
     fiber = HealthyRecipeNutrient(
         value = 5.83f,
         unit = NutrientUnit.GRAM,
@@ -155,6 +160,11 @@ val mockHealthyRecipes = listOf(
             unit = NutrientUnit.GRAM,
             nameRes = R.string.gorduras
         ),
+        totalFat = HealthyRecipeNutrient(
+            value = 5.18f,
+            unit = NutrientUnit.GRAM,
+            nameRes = R.string.gorduras_totais
+        ),
         fiber = HealthyRecipeNutrient(
             value = 5.83f,
             unit = NutrientUnit.GRAM,
@@ -245,6 +255,7 @@ val mockHealthyRecipes = listOf(
             unit = NutrientUnit.GRAM,
             nameRes = R.string.gorduras
         ),
+        totalFat = referenceRecipe.totalFat,
         fiber = referenceRecipe.fiber,
         saturatedFat = referenceRecipe.saturatedFat,
         transFat = referenceRecipe.transFat,
@@ -287,6 +298,7 @@ val mockHealthyRecipes = listOf(
             unit = NutrientUnit.GRAM,
             nameRes = R.string.gorduras
         ),
+        totalFat = referenceRecipe.totalFat,
         fiber = referenceRecipe.fiber,
         saturatedFat = referenceRecipe.saturatedFat,
         transFat = referenceRecipe.transFat,
@@ -329,6 +341,7 @@ val mockHealthyRecipes = listOf(
             unit = NutrientUnit.GRAM,
             nameRes = R.string.gorduras
         ),
+        totalFat = referenceRecipe.totalFat,
         fiber = referenceRecipe.fiber,
         saturatedFat = referenceRecipe.saturatedFat,
         transFat = referenceRecipe.transFat,
@@ -371,6 +384,7 @@ val mockHealthyRecipes = listOf(
             unit = NutrientUnit.GRAM,
             nameRes = R.string.gorduras
         ),
+        totalFat = referenceRecipe.totalFat,
         fiber = referenceRecipe.fiber,
         saturatedFat = referenceRecipe.saturatedFat,
         transFat = referenceRecipe.transFat,

@@ -38,7 +38,8 @@ import com.rocketseat.egitof.tabelanutricional.ui.theme.Typography
 fun HealthyRecipeMoreDetailsScreen(
     modifier: Modifier = Modifier,
     sheetState: SheetState,
-    healthyRecipe: HealthyRecipe
+    healthyRecipe: HealthyRecipe,
+    onDismiss: () -> Unit
 ) {
     val isPreview = LocalInspectionMode.current
 
@@ -49,7 +50,7 @@ fun HealthyRecipeMoreDetailsScreen(
     ModalBottomSheet(
         modifier = modifier,
         contentColor = MaterialTheme.colorScheme.onBackground,
-        onDismissRequest = {},
+        onDismissRequest = onDismiss,
         sheetState = sheetState,
         dragHandle = {
             Box(
@@ -90,6 +91,54 @@ fun HealthyRecipeMoreDetailsScreen(
                 nutrient = healthyRecipe.carbohydrates
             )
 
+            HealthyRecipeNutrientInfo(
+                isSubNutrient = true,
+                nutrient = healthyRecipe.fiber
+            )
+            HealthyRecipeNutrientInfo(
+                isSubNutrient = true,
+                nutrient = healthyRecipe.sugar
+            )
+
+            HealthyRecipeNutrientInfo(
+                nutrient = healthyRecipe.totalFat
+            )
+
+            HealthyRecipeNutrientInfo(
+                isSubNutrient = true,
+                nutrient = healthyRecipe.saturatedFat
+            )
+            HealthyRecipeNutrientInfo(
+                isSubNutrient = true,
+                nutrient = healthyRecipe.transFat
+            )
+            HealthyRecipeNutrientInfo(
+                nutrient = healthyRecipe.cholesterol
+            )
+            HealthyRecipeNutrientInfo(
+                nutrient = healthyRecipe.sodium
+            )
+            HealthyRecipeNutrientInfo(
+                nutrient = healthyRecipe.potassium
+            )
+            HealthyRecipeNutrientInfo(
+                nutrient = healthyRecipe.calcium
+            )
+            HealthyRecipeNutrientInfo(
+                nutrient = healthyRecipe.iron
+            )
+            HealthyRecipeNutrientInfo(
+                nutrient = healthyRecipe.magnesium
+            )
+            HealthyRecipeNutrientInfo(
+                nutrient = healthyRecipe.vitaminC
+            )
+            HealthyRecipeNutrientInfo(
+                nutrient = healthyRecipe.vitaminD
+            )
+            HealthyRecipeNutrientInfo(
+                nutrient = healthyRecipe.vitaminB6
+            )
         }
     }
 }
@@ -106,7 +155,8 @@ private fun HealthyRecipeMoreDetailsScreenPreview() {
         ) {
             HealthyRecipeMoreDetailsScreen(
                 sheetState = rememberModalBottomSheetState(),
-                healthyRecipe = mockHealthyRecipes.first()
+                healthyRecipe = mockHealthyRecipes.first(),
+                onDismiss = {}
             )
         }
     }

@@ -20,12 +20,15 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -45,15 +48,18 @@ import com.rocketseat.egitof.tabelanutricional.ui.components.LoveButton
 import com.rocketseat.egitof.tabelanutricional.ui.components.PrimaryButton
 import com.rocketseat.egitof.tabelanutricional.ui.components.healthy_recipe_details.HealthyRecipeMainInfo
 import com.rocketseat.egitof.tabelanutricional.ui.components.healthy_recipe_details.HealthyRecipeNutrientBar
+import com.rocketseat.egitof.tabelanutricional.ui.screen.healthy_recipe_more_details.HealthyRecipeMoreDetailsScreen
 import com.rocketseat.egitof.tabelanutricional.ui.theme.Primary
 import com.rocketseat.egitof.tabelanutricional.ui.theme.TabelaNutricionalTheme
 import com.rocketseat.egitof.tabelanutricional.ui.theme.TabelaNutricionalTheme.sizing
+import kotlinx.coroutines.launch
 
 private const val MAX_NUTRIENT_BAR_VALUE = 35f
 private const val HEALTHY_RECIPE_IMAGE_SCALE = 1.2f
 private const val HEALTHY_RECIPE_IMAGE_ROTATION = 360f
 private const val HEALTHY_RECIPE_IMAGE_ANIMATION_DURATION_IN_MILLIS = 1000
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HealthyRecipeDetailsScreen(
     modifier: Modifier = Modifier,
@@ -62,6 +68,10 @@ fun HealthyRecipeDetailsScreen(
     var isImageVisible by remember { mutableStateOf(true) }
     val scale = remember { Animatable(initialValue = 0f) }
     val rotation = remember { Animatable(initialValue = 0f) }
+
+    var showMoreDetails by remember { mutableStateOf(false) }
+    val coroutineScope = rememberCoroutineScope()
+    val moreDetailsSheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
 
     LaunchedEffect(key1 = Unit) {
         isImageVisible = true
@@ -153,8 +163,11 @@ fun HealthyRecipeDetailsScreen(
                     .fillMaxWidth()
                     .height(sizing.x3l)
                     .padding(horizontal = sizing.md),
-                text = stringResource(R.string.mais_detalhes)
-            ) { }
+                text = stringResource(R.string.mais_detalhes),
+                onClick = {
+                    showMoreDetails = true
+                }
+            )
         }
         Box(
             modifier = Modifier
@@ -170,6 +183,26 @@ fun HealthyRecipeDetailsScreen(
                 .fillMaxWidth()
                 .fillMaxHeight(0.8f)
         )
+
+        if(showMoreDetails) {
+            LaunchedEffect(moreDetailsSheetState) {
+                moreDetailsSheetState.show()
+            }
+
+            HealthyRecipeMoreDetailsScreen(
+                sheetState = moreDetailsSheetState,
+                healthyRecipe = healthyRecipe,
+                onDismiss = {
+                    coroutineScope.launch {
+                        moreDetailsSheetState.hide()
+                    }.invokeOnCompletion {
+                        if(!moreDetailsSheetState.isVisible) {
+                            showMoreDetails = false
+                        }
+                    }
+                }
+            )
+        }
     }
 }
 
