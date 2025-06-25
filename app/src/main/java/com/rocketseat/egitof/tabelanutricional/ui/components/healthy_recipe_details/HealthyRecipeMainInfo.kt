@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.rocketseat.egitof.tabelanutricional.R
 import com.rocketseat.egitof.tabelanutricional.ui.theme.TabelaNutricionalTheme
@@ -30,7 +31,9 @@ fun HealthyRecipeMainInfo(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
+            modifier = Modifier.fillMaxWidth(),
             text = recipeName,
+            textAlign = TextAlign.Center,
             style = Typography.headlineLarge,
         )
         Spacer(modifier = Modifier.height(sizing.lg))
