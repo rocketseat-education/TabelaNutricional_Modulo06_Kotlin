@@ -33,7 +33,7 @@ import com.rocketseat.egitof.tabelanutricional.ui.theme.Typography
 @Composable
 fun HomeScreen(modifier: Modifier = Modifier) {
     Column(
-        modifier = Modifier.fillMaxSize()
+        modifier = modifier.fillMaxSize()
     ) {
         Column(
             modifier = Modifier.padding(sizing.md)

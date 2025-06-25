@@ -41,87 +41,87 @@ private val referenceRecipe = HealthyRecipe(
     calories = HealthyRecipeNutrient(
         value = 221.15f,
         unit = NutrientUnit.KCAL,
-        name = R.string.energia
+        nameRes = R.string.energia
     ),
     proteins = HealthyRecipeNutrient(
         value = 15.13f,
         unit = NutrientUnit.GRAM,
-        name = R.string.proteinas
+        nameRes = R.string.proteinas
     ),
     carbohydrates = HealthyRecipeNutrient(
         value = 18.40f,
         unit = NutrientUnit.GRAM,
-        name = R.string.carboidratos
+        nameRes = R.string.carboidratos
     ),
     sugar = HealthyRecipeNutrient(
         value = 4.88f,
         unit = NutrientUnit.GRAM,
-        name = R.string.acucar
+        nameRes = R.string.acucar
     ),
     fat = HealthyRecipeNutrient(
         value = 5.18f,
         unit = NutrientUnit.GRAM,
-        name = R.string.gorduras
+        nameRes = R.string.gorduras
     ),
     fiber = HealthyRecipeNutrient(
         value = 5.83f,
         unit = NutrientUnit.GRAM,
-        name = R.string.fibra_alimentar
+        nameRes = R.string.fibra_alimentar
     ),
     saturatedFat = HealthyRecipeNutrient(
         value = 0.86f,
         unit = NutrientUnit.GRAM,
-        name = R.string.gorduras_saturadas
+        nameRes = R.string.gorduras_saturadas
     ),
     transFat = HealthyRecipeNutrient(
         value = 0.00f,
         unit = NutrientUnit.GRAM,
-        name = R.string.gorduras_trans
+        nameRes = R.string.gorduras_trans
     ),
     cholesterol = HealthyRecipeNutrient(
         value = 0.00f,
         unit = NutrientUnit.MILLIGRAM,
-        name = R.string.colesterol
+        nameRes = R.string.colesterol
     ),
     sodium = HealthyRecipeNutrient(
         value = 243.03f,
         unit = NutrientUnit.MILLIGRAM,
-        name = R.string.sodio
+        nameRes = R.string.sodio
     ),
     potassium = HealthyRecipeNutrient(
         value = 291.85f,
         unit = NutrientUnit.MILLIGRAM,
-        name = R.string.potassio
+        nameRes = R.string.potassio
     ),
     calcium = HealthyRecipeNutrient(
         value = 49.02f,
         unit = NutrientUnit.MILLIGRAM,
-        name = R.string.calcio
+        nameRes = R.string.calcio
     ),
     iron = HealthyRecipeNutrient(
         value = 2.91f,
         unit = NutrientUnit.MILLIGRAM,
-        name = R.string.ferro
+        nameRes = R.string.ferro
     ),
     magnesium = HealthyRecipeNutrient(
         value = 48.23f,
         unit = NutrientUnit.MILLIGRAM,
-        name = R.string.magnesio
+        nameRes = R.string.magnesio
     ),
     vitaminC = HealthyRecipeNutrient(
         value = 29.49f,
         unit = NutrientUnit.MILLIGRAM,
-        name = R.string.vitamina_c
+        nameRes = R.string.vitamina_c
     ),
     vitaminD = HealthyRecipeNutrient(
         value = 24.88f,
         unit = NutrientUnit.MILLIGRAM,
-        name = R.string.vitamina_d
+        nameRes = R.string.vitamina_d
     ),
     vitaminB6 = HealthyRecipeNutrient(
         value = 32.40f,
         unit = NutrientUnit.MILLIGRAM,
-        name = R.string.vitamina_b6
+        nameRes = R.string.vitamina_b6
     ),
     totalPortionInGrams = 240
 )
@@ -133,87 +133,87 @@ val mockHealthyRecipes = listOf(
         calories = HealthyRecipeNutrient(
             value = 221.15f,
             unit = NutrientUnit.GRAM,
-            name = R.string.energia
+            nameRes = R.string.energia
         ),
         proteins = HealthyRecipeNutrient(
             value = 15.13f,
             unit = NutrientUnit.GRAM,
-            name = R.string.proteinas
+            nameRes = R.string.proteinas
         ),
         carbohydrates = HealthyRecipeNutrient(
             value = 18.40f,
             unit = NutrientUnit.GRAM,
-            name = R.string.carboidratos
+            nameRes = R.string.carboidratos
         ),
         sugar = HealthyRecipeNutrient(
             value = 4.88f,
             unit = NutrientUnit.GRAM,
-            name = R.string.acucar
+            nameRes = R.string.acucar
         ),
         fat = HealthyRecipeNutrient(
             value = 5.18f,
             unit = NutrientUnit.GRAM,
-            name = R.string.gorduras
+            nameRes = R.string.gorduras
         ),
         fiber = HealthyRecipeNutrient(
             value = 5.83f,
             unit = NutrientUnit.GRAM,
-            name = R.string.fibra_alimentar
+            nameRes = R.string.fibra_alimentar
         ),
         saturatedFat = HealthyRecipeNutrient(
             value = 0.86f,
             unit = NutrientUnit.GRAM,
-            name = R.string.gorduras_saturadas
+            nameRes = R.string.gorduras_saturadas
         ),
         transFat = HealthyRecipeNutrient(
             value = 0.00f,
             unit = NutrientUnit.GRAM,
-            name = R.string.gorduras_trans
+            nameRes = R.string.gorduras_trans
         ),
         cholesterol = HealthyRecipeNutrient(
             value = 0.00f,
             unit = NutrientUnit.MILLIGRAM,
-            name = R.string.colesterol
+            nameRes = R.string.colesterol
         ),
         sodium = HealthyRecipeNutrient(
             value = 243.03f,
             unit = NutrientUnit.MILLIGRAM,
-            name = R.string.sodio
+            nameRes = R.string.sodio
         ),
         potassium = HealthyRecipeNutrient(
             value = 291.85f,
             unit = NutrientUnit.MILLIGRAM,
-            name = R.string.potassio
+            nameRes = R.string.potassio
         ),
         calcium = HealthyRecipeNutrient(
             value = 49.02f,
             unit = NutrientUnit.MILLIGRAM,
-            name = R.string.calcio
+            nameRes = R.string.calcio
         ),
         iron = HealthyRecipeNutrient(
             value = 2.91f,
             unit = NutrientUnit.MILLIGRAM,
-            name = R.string.ferro
+            nameRes = R.string.ferro
         ),
         magnesium = HealthyRecipeNutrient(
             value = 48.23f,
             unit = NutrientUnit.MILLIGRAM,
-            name = R.string.magnesio
+            nameRes = R.string.magnesio
         ),
         vitaminC = HealthyRecipeNutrient(
             value = 29.49f,
             unit = NutrientUnit.MILLIGRAM,
-            name = R.string.vitamina_c
+            nameRes = R.string.vitamina_c
         ),
         vitaminD = HealthyRecipeNutrient(
             value = 24.88f,
             unit = NutrientUnit.MILLIGRAM,
-            name = R.string.vitamina_d
+            nameRes = R.string.vitamina_d
         ),
         vitaminB6 = HealthyRecipeNutrient(
             value = 32.40f,
             unit = NutrientUnit.MILLIGRAM,
-            name = R.string.vitamina_b6
+            nameRes = R.string.vitamina_b6
         ),
         totalPortionInGrams = 240
     ),
@@ -223,27 +223,27 @@ val mockHealthyRecipes = listOf(
         calories = HealthyRecipeNutrient(
             value = 280.10f,
             unit = NutrientUnit.KCAL,
-            name = R.string.energia
+            nameRes = R.string.energia
         ),
         proteins = HealthyRecipeNutrient(
             value = 20.50f,
             unit = NutrientUnit.GRAM,
-            name = R.string.proteinas
+            nameRes = R.string.proteinas
         ),
         carbohydrates = HealthyRecipeNutrient(
             value = 10.30f,
             unit = NutrientUnit.GRAM,
-            name = R.string.carboidratos
+            nameRes = R.string.carboidratos
         ),
         sugar = HealthyRecipeNutrient(
             value = 4.88f,
             unit = NutrientUnit.GRAM,
-            name = R.string.acucar
+            nameRes = R.string.acucar
         ),
         fat = HealthyRecipeNutrient(
             value = 5.18f,
             unit = NutrientUnit.GRAM,
-            name = R.string.gorduras
+            nameRes = R.string.gorduras
         ),
         fiber = referenceRecipe.fiber,
         saturatedFat = referenceRecipe.saturatedFat,
@@ -265,27 +265,27 @@ val mockHealthyRecipes = listOf(
         calories = HealthyRecipeNutrient(
             value = 250.60f,
             unit = NutrientUnit.KCAL,
-            name = R.string.energia
+            nameRes = R.string.energia
         ),
         proteins = HealthyRecipeNutrient(
             value = 8.75f,
             unit = NutrientUnit.GRAM,
-            name = R.string.proteinas
+            nameRes = R.string.proteinas
         ),
         carbohydrates = HealthyRecipeNutrient(
             value = 4.20f,
             unit = NutrientUnit.GRAM,
-            name = R.string.carboidratos
+            nameRes = R.string.carboidratos
         ),
         sugar = HealthyRecipeNutrient(
             value = 4.88f,
             unit = NutrientUnit.GRAM,
-            name = R.string.acucar
+            nameRes = R.string.acucar
         ),
         fat = HealthyRecipeNutrient(
             value = 5.18f,
             unit = NutrientUnit.GRAM,
-            name = R.string.gorduras
+            nameRes = R.string.gorduras
         ),
         fiber = referenceRecipe.fiber,
         saturatedFat = referenceRecipe.saturatedFat,
@@ -307,27 +307,27 @@ val mockHealthyRecipes = listOf(
         calories = HealthyRecipeNutrient(
             value = 221.15f,
             unit = NutrientUnit.KCAL,
-            name = R.string.energia
+            nameRes = R.string.energia
         ),
         proteins = HealthyRecipeNutrient(
             value = 15.13f,
             unit = NutrientUnit.GRAM,
-            name = R.string.proteinas
+            nameRes = R.string.proteinas
         ),
         carbohydrates = HealthyRecipeNutrient(
             value = 18.40f,
             unit = NutrientUnit.GRAM,
-            name = R.string.carboidratos
+            nameRes = R.string.carboidratos
         ),
         sugar = HealthyRecipeNutrient(
             value = 4.88f,
             unit = NutrientUnit.GRAM,
-            name = R.string.acucar
+            nameRes = R.string.acucar
         ),
         fat = HealthyRecipeNutrient(
             value = 5.18f,
             unit = NutrientUnit.GRAM,
-            name = R.string.gorduras
+            nameRes = R.string.gorduras
         ),
         fiber = referenceRecipe.fiber,
         saturatedFat = referenceRecipe.saturatedFat,
@@ -349,27 +349,27 @@ val mockHealthyRecipes = listOf(
         calories = HealthyRecipeNutrient(
             value = 190.30f,
             unit = NutrientUnit.KCAL,
-            name = R.string.energia
+            nameRes = R.string.energia
         ),
         proteins = HealthyRecipeNutrient(
             value = 12.10f,
             unit = NutrientUnit.GRAM,
-            name = R.string.proteinas
+            nameRes = R.string.proteinas
         ),
         carbohydrates = HealthyRecipeNutrient(
             value = 30.15f,
             unit = NutrientUnit.GRAM,
-            name = R.string.carboidratos
+            nameRes = R.string.carboidratos
         ),
         sugar = HealthyRecipeNutrient(
             value = 4.88f,
             unit = NutrientUnit.GRAM,
-            name = R.string.acucar
+            nameRes = R.string.acucar
         ),
         fat = HealthyRecipeNutrient(
             value = 5.18f,
             unit = NutrientUnit.GRAM,
-            name = R.string.gorduras
+            nameRes = R.string.gorduras
         ),
         fiber = referenceRecipe.fiber,
         saturatedFat = referenceRecipe.saturatedFat,

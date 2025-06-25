@@ -21,6 +21,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import com.rocketseat.egitof.tabelanutricional.R
 import com.rocketseat.egitof.tabelanutricional.data.model.HealthyRecipe
+import com.rocketseat.egitof.tabelanutricional.data.model.mock.mockHealthyRecipes
 import com.rocketseat.egitof.tabelanutricional.ui.theme.TabelaNutricionalTheme
 import com.rocketseat.egitof.tabelanutricional.ui.theme.TabelaNutricionalTheme.sizing
 import com.rocketseat.egitof.tabelanutricional.ui.theme.Typography
@@ -86,16 +87,7 @@ private fun HealthyRecipeCardPreview() {
         ) {
             repeat(5) {
                 HealthyRecipeCard(
-                    healthyRecipe = HealthyRecipe(
-                        name = "Salada variada",
-                        imageRes = R.drawable.img_assorted_salad,
-                        calories = 221.15f,
-                        proteins = 13.13f,
-                        carbohydrates = 22.80f,
-                        sugar = 4.88f,
-                        fat = 5.18f,
-                        totalPortionInGrams = 240
-                    )
+                    healthyRecipe = mockHealthyRecipes.first()
                 )
             }
         }

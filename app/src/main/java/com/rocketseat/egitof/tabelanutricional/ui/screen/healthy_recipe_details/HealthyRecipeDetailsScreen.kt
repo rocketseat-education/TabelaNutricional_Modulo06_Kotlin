@@ -1,6 +1,5 @@
 package com.rocketseat.egitof.tabelanutricional.ui.screen.healthy_recipe_details
 
-import androidx.compose.animation.Animatable
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.LinearEasing
@@ -138,7 +137,7 @@ fun HealthyRecipeDetailsScreen(
 
             HealthyRecipeMainInfo(
                 recipeName = healthyRecipe.name,
-                calories = healthyRecipe.calories,
+                calories = healthyRecipe.calories.value,
                 totalPortionInGrams = healthyRecipe.totalPortionInGrams
             )
 
@@ -184,23 +183,23 @@ private fun HealthyRecipeNutrientBarList(
         verticalArrangement = Arrangement.spacedBy(sizing.md)
     ) {
         HealthyRecipeNutrientBar(
-            name = stringResource(R.string.proteinas),
-            value = healthyRecipe.proteins,
+            name = stringResource(healthyRecipe.proteins.nameRes),
+            value = healthyRecipe.proteins.value,
             maxValue = MAX_NUTRIENT_BAR_VALUE
         )
         HealthyRecipeNutrientBar(
-            name = stringResource(R.string.carboidratos),
-            value = healthyRecipe.carbohydrates,
+            name = stringResource(healthyRecipe.carbohydrates.nameRes),
+            value = healthyRecipe.carbohydrates.value,
             maxValue = MAX_NUTRIENT_BAR_VALUE
         )
         HealthyRecipeNutrientBar(
-            name = stringResource(R.string.acucar),
-            value = healthyRecipe.sugar,
+            name = stringResource(healthyRecipe.sugar.nameRes),
+            value = healthyRecipe.sugar.value,
             maxValue = MAX_NUTRIENT_BAR_VALUE
         )
         HealthyRecipeNutrientBar(
-            name = stringResource(R.string.gorduras),
-            value = healthyRecipe.fat,
+            name = stringResource(healthyRecipe.fat.nameRes),
+            value = healthyRecipe.fat.value,
             maxValue = MAX_NUTRIENT_BAR_VALUE
         )
     }
