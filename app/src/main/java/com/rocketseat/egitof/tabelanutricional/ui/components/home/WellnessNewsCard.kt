@@ -24,6 +24,7 @@ import com.rocketseat.egitof.tabelanutricional.R
 import com.rocketseat.egitof.tabelanutricional.ui.theme.TabelaNutricionalTheme
 import com.rocketseat.egitof.tabelanutricional.ui.theme.TabelaNutricionalTheme.sizing
 import com.rocketseat.egitof.tabelanutricional.ui.theme.Typography
+import java.util.UUID
 
 enum class WellnessNewsTag(
     val description: String
@@ -34,6 +35,7 @@ enum class WellnessNewsTag(
 }
 
 data class WellnessNews(
+    val id: UUID = UUID.randomUUID(),
     val title: String,
     @DrawableRes val imageRes: Int,
     val readTimeInMinutes: Int,
@@ -78,8 +80,8 @@ fun WellnessNewsCard(
                 .padding(vertical = sizing.md),
             text = wellnessNews.title,
             style = Typography.titleSmall,
-            minLines = 3,
-            maxLines = 3,
+            minLines = 4,
+            maxLines = 4,
             overflow = TextOverflow.Ellipsis
         )
         

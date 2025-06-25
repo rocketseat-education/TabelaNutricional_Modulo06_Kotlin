@@ -25,8 +25,10 @@ import com.rocketseat.egitof.tabelanutricional.R
 import com.rocketseat.egitof.tabelanutricional.ui.theme.TabelaNutricionalTheme
 import com.rocketseat.egitof.tabelanutricional.ui.theme.TabelaNutricionalTheme.sizing
 import com.rocketseat.egitof.tabelanutricional.ui.theme.Typography
+import java.util.UUID
 
 data class HealthyRecipe(
+    val id: UUID = UUID.randomUUID(),
     val name: String,
     @DrawableRes val imageRes: Int,
     val calories: Float,
@@ -44,7 +46,7 @@ fun HealthyRecipeCard(
     ) {
         Image(
             modifier = Modifier
-                .size(sizing.x2l)
+                .size(sizing.x3l)
                 .clip(shape = RoundedCornerShape(sizing.md)),
             painter = painterResource(id = healthyRecipe.imageRes),
             contentDescription = stringResource(id = R.string.imagem_item_tabela_nutricional)
