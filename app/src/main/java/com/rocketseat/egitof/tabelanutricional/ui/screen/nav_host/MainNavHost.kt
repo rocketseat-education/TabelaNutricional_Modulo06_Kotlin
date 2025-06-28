@@ -7,6 +7,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.rocketseat.egitof.tabelanutricional.core.navigation.UIArgument
 import com.rocketseat.egitof.tabelanutricional.core.navigation.UIRoute
 import com.rocketseat.egitof.tabelanutricional.data.model.mock.mockHealthyRecipes
 import com.rocketseat.egitof.tabelanutricional.ui.screen.healthy_recipe_details.HealthyRecipeDetailsScreen
@@ -37,7 +38,7 @@ fun MainNavHost(modifier: Modifier = Modifier) {
         }
 
         composable<UIRoute.HealthRecipeDetails> { navBackStackEntry ->
-            val healthyRecipeId = navBackStackEntry.arguments?.getString("healthyRecipeId")
+            val healthyRecipeId = navBackStackEntry.arguments?.getString(UIArgument.HEALTHY_RECIPE_ID.key)
             healthyRecipeId?.let {
                 val healthyRecipe =
                     mockHealthyRecipes.find { healthyRecipe -> healthyRecipeId == healthyRecipe.id.toString() }

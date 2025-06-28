@@ -13,4 +13,14 @@ class HealthyRecipeRepositoryImpl(
         withContext(Dispatchers.Default) {
             localDataSource.getHealthyRecipeById(id)
         }
+
+    override suspend fun checkIsFavorite(id: String): Boolean = withContext(Dispatchers.Default) {
+        localDataSource.checkIsFavorite(id)
+    }
+
+    override suspend fun updateIsFavorite(id: String, isFavorite: Boolean) {
+        withContext(Dispatchers.Default) {
+            localDataSource.updateIsFavorite(id = id, isFavorite = isFavorite)
+        }
+    }
 }

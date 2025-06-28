@@ -4,10 +4,14 @@ import com.rocketseat.egitof.tabelanutricional.data.datasource.local.HealthyReci
 import com.rocketseat.egitof.tabelanutricional.data.datasource.local.MockHealthyRecipeLocalDataSourceImpl
 import com.rocketseat.egitof.tabelanutricional.data.datasource.local.MockWellnessNewsLocalDataSourceImpl
 import com.rocketseat.egitof.tabelanutricional.data.datasource.local.WellnessNewsLocalDataSource
+import com.rocketseat.egitof.tabelanutricional.data.repository.HealthyRecipeRepositoryImpl
 import com.rocketseat.egitof.tabelanutricional.data.repository.HomeContentRepositoryImpl
+import com.rocketseat.egitof.tabelanutricional.domain.repository.HealthyRecipeRepository
 import com.rocketseat.egitof.tabelanutricional.domain.repository.HomeContentRepository
 import com.rocketseat.egitof.tabelanutricional.domain.usecase.GetHealthyRecipeByIdUseCase
 import com.rocketseat.egitof.tabelanutricional.domain.usecase.GetHomeContentUseCase
+import com.rocketseat.egitof.tabelanutricional.domain.usecase.IsHealthyRecipeFavoriteUseCase
+import com.rocketseat.egitof.tabelanutricional.domain.usecase.UpdateHealthyRecipeIsFavoriteUseCase
 import com.rocketseat.egitof.tabelanutricional.ui.screen.healthy_recipe_details.HealthyRecipeDetailsViewModel
 import com.rocketseat.egitof.tabelanutricional.ui.screen.home.HomeViewModel
 import org.koin.core.module.dsl.bind
@@ -25,6 +29,8 @@ object AppModules {
     val domainModule = module {
         factory { GetHomeContentUseCase(get()) }
         factory { GetHealthyRecipeByIdUseCase(get()) }
+        factory { IsHealthyRecipeFavoriteUseCase(get()) }
+        factory { UpdateHealthyRecipeIsFavoriteUseCase(get()) }
     }
 
     val dataModule = module {
@@ -38,6 +44,10 @@ object AppModules {
 
         singleOf(::HomeContentRepositoryImpl) {
             bind<HomeContentRepository>()
+        }
+
+        singleOf(::HealthyRecipeRepositoryImpl) {
+            bind<HealthyRecipeRepository>()
         }
     }
 }
