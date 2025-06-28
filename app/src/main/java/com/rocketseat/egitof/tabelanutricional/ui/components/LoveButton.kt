@@ -25,8 +25,12 @@ import com.rocketseat.egitof.tabelanutricional.ui.theme.TabelaNutricionalTheme
 import kotlinx.coroutines.delay
 
 @Composable
-fun LoveButton(modifier: Modifier = Modifier, onClick: (isSelected: Boolean) -> Unit) {
-    var isSelected by remember { mutableStateOf(false) }
+fun LoveButton(
+    modifier: Modifier = Modifier,
+    isSelected: Boolean = false,
+    onClick: (isSelected: Boolean) -> Unit
+) {
+    var isSelected by remember { mutableStateOf(isSelected) }
 
     var isPressed by remember { mutableStateOf(false) }
 
@@ -38,12 +42,12 @@ fun LoveButton(modifier: Modifier = Modifier, onClick: (isSelected: Boolean) -> 
     }
 
     val color by animateColorAsState(
-        targetValue = if(isSelected) Secondary else LocalContentColor.current,
+        targetValue = if (isSelected) Secondary else LocalContentColor.current,
         animationSpec = tween(durationMillis = 500)
     )
 
     val scale by animateFloatAsState(
-        targetValue = if(isPressed) 1.2f else 1f,
+        targetValue = if (isPressed) 1.2f else 1f,
         animationSpec = tween(durationMillis = 300)
     )
 
@@ -61,7 +65,7 @@ fun LoveButton(modifier: Modifier = Modifier, onClick: (isSelected: Boolean) -> 
     ) {
         Icon(
             modifier = Modifier.scale(scale),
-            painter = painterResource(id = if(!isSelected) R.drawable.ic_heart else R.drawable.ic_heart_filled),
+            painter = painterResource(id = if (!isSelected) R.drawable.ic_heart else R.drawable.ic_heart_filled),
             contentDescription = stringResource(R.string.botao_coracao)
         )
     }

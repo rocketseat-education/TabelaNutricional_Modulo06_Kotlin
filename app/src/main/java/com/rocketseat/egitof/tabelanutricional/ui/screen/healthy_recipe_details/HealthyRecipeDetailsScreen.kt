@@ -11,11 +11,14 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -49,6 +52,7 @@ import com.rocketseat.egitof.tabelanutricional.ui.components.PrimaryButton
 import com.rocketseat.egitof.tabelanutricional.ui.components.healthy_recipe_details.HealthyRecipeMainInfo
 import com.rocketseat.egitof.tabelanutricional.ui.components.healthy_recipe_details.HealthyRecipeNutrientBar
 import com.rocketseat.egitof.tabelanutricional.ui.screen.healthy_recipe_more_details.HealthyRecipeMoreDetailsScreen
+import com.rocketseat.egitof.tabelanutricional.ui.screen.home.HomeUIState
 import com.rocketseat.egitof.tabelanutricional.ui.theme.Primary
 import com.rocketseat.egitof.tabelanutricional.ui.theme.TabelaNutricionalTheme
 import com.rocketseat.egitof.tabelanutricional.ui.theme.TabelaNutricionalTheme.sizing
@@ -63,149 +67,166 @@ private const val HEALTHY_RECIPE_IMAGE_ANIMATION_DURATION_IN_MILLIS = 1000
 @Composable
 fun HealthyRecipeDetailsScreen(
     modifier: Modifier = Modifier,
-    healthyRecipe: HealthyRecipe,
-    onClickFavorite: (isSelected: Boolean) -> Unit,
+    id: String,
+    uiState: HealthyRecipeDetailsUIState,
+    onEvent: (HealthyRecipeDetailsEvent) -> Unit,
     onNavigateBack: () -> Unit
 ) {
-    var isImageVisible by remember { mutableStateOf(true) }
-    val scale = remember { Animatable(initialValue = 0f) }
-    val rotation = remember { Animatable(initialValue = 0f) }
-
-    var showMoreDetails by remember { mutableStateOf(false) }
-    val coroutineScope = rememberCoroutineScope()
-    val moreDetailsSheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
-
-    LaunchedEffect(key1 = Unit) {
-        isImageVisible = true
-
-        scale.animateTo(
-            targetValue = HEALTHY_RECIPE_IMAGE_SCALE,
-            animationSpec = tween(
-                durationMillis = HEALTHY_RECIPE_IMAGE_ANIMATION_DURATION_IN_MILLIS,
-                easing = LinearEasing
-            )
-        )
+    LaunchedEffect(Unit) {
+        onEvent(HealthyRecipeDetailsEvent.FindHealthyRecipeById(id))
     }
 
-    LaunchedEffect(key1 = Unit) {
-        rotation.animateTo(
-            targetValue = HEALTHY_RECIPE_IMAGE_ROTATION,
-            animationSpec = tween(
-                durationMillis = HEALTHY_RECIPE_IMAGE_ANIMATION_DURATION_IN_MILLIS,
-                easing = FastOutSlowInEasing
-            )
-        )
-    }
+    uiState.healthyRecipe?.let { healthyRecipe ->
+        var isImageVisible by remember { mutableStateOf(true) }
+        val scale = remember { Animatable(initialValue = 0f) }
+        val rotation = remember { Animatable(initialValue = 0f) }
 
-    Box(
-        modifier = modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .verticalScroll(rememberScrollState())
-                .padding(sizing.lg),
-            verticalArrangement = Arrangement.spacedBy(sizing.md)
-        ) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                BackButton(
-                    modifier = Modifier.shadow(
-                        elevation = sizing.lg,
-                        shape = CircleShape,
-                        spotColor = Primary
-                    ),
-                    onClick = onNavigateBack
+        var showMoreDetails by remember { mutableStateOf(false) }
+        val coroutineScope = rememberCoroutineScope()
+        val moreDetailsSheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
+
+        LaunchedEffect(key1 = Unit) {
+            isImageVisible = true
+
+            scale.animateTo(
+                targetValue = HEALTHY_RECIPE_IMAGE_SCALE,
+                animationSpec = tween(
+                    durationMillis = HEALTHY_RECIPE_IMAGE_ANIMATION_DURATION_IN_MILLIS,
+                    easing = LinearEasing
                 )
-                LoveButton(
-                    modifier = Modifier.shadow(
-                        elevation = sizing.lg,
-                        shape = CircleShape,
-                        spotColor = Primary
-                    ),
-                    onClick = { isSelected ->
-                        onClickFavorite(isSelected)
-                    }
-                )
-            }
-
-            if(isImageVisible) {
-                Image(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .graphicsLayer {
-                            scaleX = scale.value
-                            scaleY = scale.value
-                            rotationZ = rotation.value
-                        }
-                        .align(Alignment.CenterHorizontally),
-                    painter = painterResource(id = R.drawable.img_dish_with_shadow),
-                    contentScale = ContentScale.FillWidth,
-                    contentDescription = stringResource(id = R.string.imagem_item_tabela_nutricional)
-                )
-            }
-
-            HealthyRecipeMainInfo(
-                recipeName = healthyRecipe.name,
-                calories = healthyRecipe.calories.value,
-                totalPortionInGrams = healthyRecipe.totalPortionInGrams
-            )
-
-            HealthyRecipeNutrientBarList(
-                modifier = Modifier.padding(horizontal = sizing.md),
-                healthyRecipe = healthyRecipe
-            )
-
-            Spacer(modifier = Modifier.height(sizing.sm))
-
-            PrimaryButton(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(sizing.x3l)
-                    .padding(horizontal = sizing.md),
-                text = stringResource(R.string.mais_detalhes),
-                onClick = {
-                    showMoreDetails = true
-                }
             )
         }
-        Box(
-            modifier = Modifier
-                .zIndex(-1f)
-                .align(Alignment.BottomStart)
-                .clip(
-                    RoundedCornerShape(
-                        topStart = sizing.xl,
-                        topEnd = sizing.xl
-                    )
+
+        LaunchedEffect(key1 = Unit) {
+            rotation.animateTo(
+                targetValue = HEALTHY_RECIPE_IMAGE_ROTATION,
+                animationSpec = tween(
+                    durationMillis = HEALTHY_RECIPE_IMAGE_ANIMATION_DURATION_IN_MILLIS,
+                    easing = FastOutSlowInEasing
                 )
-                .background(MaterialTheme.colorScheme.surface)
-                .fillMaxWidth()
-                .fillMaxHeight(0.8f)
-        )
+            )
+        }
 
-        if(showMoreDetails) {
-            LaunchedEffect(moreDetailsSheetState) {
-                moreDetailsSheetState.show()
+        Box(
+            modifier = modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.background)
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .verticalScroll(rememberScrollState())
+                    .padding(WindowInsets.systemBars.asPaddingValues())
+                    .padding(horizontal = sizing.lg),
+                verticalArrangement = Arrangement.spacedBy(sizing.md)
+            ) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    BackButton(
+                        modifier = Modifier.shadow(
+                            elevation = sizing.lg,
+                            shape = CircleShape,
+                            spotColor = Primary
+                        ),
+                        onClick = {
+                            onEvent(HealthyRecipeDetailsEvent.OnBackPressed)
+                            onNavigateBack()
+                        }
+                    )
+                    LoveButton(
+                        modifier = Modifier.shadow(
+                            elevation = sizing.lg,
+                            shape = CircleShape,
+                            spotColor = Primary
+                        ),
+                        isSelected = uiState.isFavorite,
+                        onClick = { isSelected ->
+                            onEvent(
+                                HealthyRecipeDetailsEvent.UpdateIsFavorite(
+                                    id = id,
+                                    isFavorite = isSelected
+                                )
+                            )
+                        }
+                    )
+                }
+
+                if(isImageVisible) {
+                    Image(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .graphicsLayer {
+                                scaleX = scale.value
+                                scaleY = scale.value
+                                rotationZ = rotation.value
+                            }
+                            .align(Alignment.CenterHorizontally),
+                        painter = painterResource(id = R.drawable.img_dish_with_shadow),
+                        contentScale = ContentScale.FillWidth,
+                        contentDescription = stringResource(id = R.string.imagem_item_tabela_nutricional)
+                    )
+                }
+
+                HealthyRecipeMainInfo(
+                    recipeName = healthyRecipe.name,
+                    calories = healthyRecipe.calories.value,
+                    totalPortionInGrams = healthyRecipe.totalPortionInGrams
+                )
+
+                HealthyRecipeNutrientBarList(
+                    modifier = Modifier.padding(horizontal = sizing.md),
+                    healthyRecipe = healthyRecipe
+                )
+
+                Spacer(modifier = Modifier.height(sizing.sm))
+
+                PrimaryButton(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(sizing.x3l)
+                        .padding(horizontal = sizing.md),
+                    text = stringResource(R.string.mais_detalhes),
+                    onClick = {
+                        showMoreDetails = true
+                    }
+                )
             }
+            Box(
+                modifier = Modifier
+                    .zIndex(-1f)
+                    .align(Alignment.BottomStart)
+                    .clip(
+                        RoundedCornerShape(
+                            topStart = sizing.xl,
+                            topEnd = sizing.xl
+                        )
+                    )
+                    .background(MaterialTheme.colorScheme.surface)
+                    .fillMaxWidth()
+                    .fillMaxHeight(0.8f)
+            )
 
-            HealthyRecipeMoreDetailsScreen(
-                sheetState = moreDetailsSheetState,
-                healthyRecipe = healthyRecipe,
-                onDismiss = {
-                    coroutineScope.launch {
-                        moreDetailsSheetState.hide()
-                    }.invokeOnCompletion {
-                        if(!moreDetailsSheetState.isVisible) {
-                            showMoreDetails = false
+            if(showMoreDetails) {
+                LaunchedEffect(moreDetailsSheetState) {
+                    moreDetailsSheetState.show()
+                }
+
+                HealthyRecipeMoreDetailsScreen(
+                    sheetState = moreDetailsSheetState,
+                    healthyRecipe = healthyRecipe,
+                    onDismiss = {
+                        coroutineScope.launch {
+                            moreDetailsSheetState.hide()
+                        }.invokeOnCompletion {
+                            if(!moreDetailsSheetState.isVisible) {
+                                showMoreDetails = false
+                            }
                         }
                     }
-                }
-            )
+                )
+            }
         }
     }
 }
@@ -247,8 +268,9 @@ private fun HealthyRecipeNutrientBarList(
 private fun HealthyRecipeDetailsScreenPreview() {
     TabelaNutricionalTheme {
         HealthyRecipeDetailsScreen(
-            healthyRecipe = mockHealthyRecipes.first(),
-            onClickFavorite = {},
+            id = "",
+            uiState = HealthyRecipeDetailsUIState(),
+            onEvent = {},
             onNavigateBack = {}
         )
     }
