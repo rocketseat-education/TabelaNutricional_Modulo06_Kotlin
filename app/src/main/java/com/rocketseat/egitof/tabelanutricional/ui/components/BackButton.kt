@@ -44,7 +44,7 @@ fun BackButton(modifier: Modifier= Modifier, onClick: () -> Unit) {
         ),
         onClick = {
             isPressed = true
-            onClick
+            onClick()
         }
     ) {
         Icon(

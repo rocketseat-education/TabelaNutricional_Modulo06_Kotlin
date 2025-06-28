@@ -63,7 +63,9 @@ private const val HEALTHY_RECIPE_IMAGE_ANIMATION_DURATION_IN_MILLIS = 1000
 @Composable
 fun HealthyRecipeDetailsScreen(
     modifier: Modifier = Modifier,
-    healthyRecipe: HealthyRecipe
+    healthyRecipe: HealthyRecipe,
+    onClickFavorite: (isSelected: Boolean) -> Unit,
+    onNavigateBack: () -> Unit
 ) {
     var isImageVisible by remember { mutableStateOf(true) }
     val scale = remember { Animatable(initialValue = 0f) }
@@ -117,7 +119,7 @@ fun HealthyRecipeDetailsScreen(
                         shape = CircleShape,
                         spotColor = Primary
                     ),
-                    onClick = {}
+                    onClick = onNavigateBack
                 )
                 LoveButton(
                     modifier = Modifier.shadow(
@@ -125,7 +127,9 @@ fun HealthyRecipeDetailsScreen(
                         shape = CircleShape,
                         spotColor = Primary
                     ),
-                    onClick = {}
+                    onClick = { isSelected ->
+                        onClickFavorite(isSelected)
+                    }
                 )
             }
 
@@ -243,7 +247,9 @@ private fun HealthyRecipeNutrientBarList(
 private fun HealthyRecipeDetailsScreenPreview() {
     TabelaNutricionalTheme {
         HealthyRecipeDetailsScreen(
-            healthyRecipe = mockHealthyRecipes.first()
+            healthyRecipe = mockHealthyRecipes.first(),
+            onClickFavorite = {},
+            onNavigateBack = {}
         )
     }
 }
