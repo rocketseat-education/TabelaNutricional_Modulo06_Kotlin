@@ -1,6 +1,7 @@
 package com.rocketseat.egitof.tabelanutricional.ui.components.home
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -30,9 +31,12 @@ import com.rocketseat.egitof.tabelanutricional.ui.theme.Typography
 fun HealthyRecipeCard(
     modifier: Modifier = Modifier,
     healthyRecipe: HealthyRecipe,
+    onClick: (selectedHealthyRecipeId: String) -> Unit
 ) {
     Row(
-        modifier = modifier.fillMaxWidth()
+        modifier = modifier.fillMaxWidth().clickable {
+            onClick(healthyRecipe.id.toString())
+        }
     ) {
         Image(
             modifier = Modifier
@@ -58,7 +62,7 @@ fun HealthyRecipeCard(
                     style = Typography.headlineMedium
                 )
                 Text(
-                    text = stringResource(R.string.valor_kcal, healthyRecipe.calories),
+                    text = stringResource(R.string.valor_kcal, healthyRecipe.calories.value),
                     style = Typography.bodyLarge
                 )
             }
@@ -66,8 +70,8 @@ fun HealthyRecipeCard(
                 modifier = Modifier.fillMaxWidth(),
                 text = stringResource(
                     R.string.g_proteinas_g_carboidratos_da_receita,
-                    healthyRecipe.proteins,
-                    healthyRecipe.carbohydrates
+                    healthyRecipe.proteins.value,
+                    healthyRecipe.carbohydrates.value
                 ),
                 overflow = TextOverflow.Ellipsis,
                 maxLines = 2,
@@ -87,7 +91,8 @@ private fun HealthyRecipeCardPreview() {
         ) {
             repeat(5) {
                 HealthyRecipeCard(
-                    healthyRecipe = mockHealthyRecipes.first()
+                    healthyRecipe = mockHealthyRecipes.first(),
+                    onClick = {}
                 )
             }
         }

@@ -31,7 +31,10 @@ import com.rocketseat.egitof.tabelanutricional.ui.theme.TabelaNutricionalTheme.s
 import com.rocketseat.egitof.tabelanutricional.ui.theme.Typography
 
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier) {
+fun HomeScreen(
+    modifier: Modifier = Modifier,
+    onNavigateToDetails: (selectedHealthyRecipeId: String) -> Unit
+) {
     Column(
         modifier = modifier.fillMaxSize()
     ) {
@@ -55,7 +58,10 @@ fun HomeScreen(modifier: Modifier = Modifier) {
                 style = Typography.headlineMedium
             )
             Spacer(modifier = Modifier.height(sizing.lg))
-            HealthyRecipeList(healthyRecipes = mockHealthyRecipes)
+            HealthyRecipeList(
+                healthyRecipes = mockHealthyRecipes,
+                onNavigateToDetails = onNavigateToDetails
+            )
         }
     }
 }
@@ -70,7 +76,7 @@ private fun WellnessNewsList(
         modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(sizing.md),
     ) {
-        items(items = wellnessNewsList, key = { wellnessNews ->  wellnessNews.id }) { wellnessNews ->
+        items(items = wellnessNewsList, key = { wellnessNews -> wellnessNews.id }) { wellnessNews ->
             WellnessNewsCard(
                 modifier = Modifier.width(cardWidth),
                 wellnessNews = wellnessNews
@@ -82,15 +88,21 @@ private fun WellnessNewsList(
 @Composable
 private fun HealthyRecipeList(
     modifier: Modifier = Modifier,
-    healthyRecipes: List<HealthyRecipe>
+    healthyRecipes: List<HealthyRecipe>,
+    onNavigateToDetails: (selectedHealthyRecipeId: String) -> Unit
 ) {
-    LazyColumn (
+    LazyColumn(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(sizing.md),
     ) {
-        items(items = healthyRecipes, key = { healthyRecipe ->  healthyRecipe.id }) { healthyRecipe ->
+        items(
+            items = healthyRecipes,
+            key = { healthyRecipe -> healthyRecipe.id }) { healthyRecipe ->
             HealthyRecipeCard(
-                healthyRecipe = healthyRecipe
+                healthyRecipe = healthyRecipe,
+                onClick = { selectedHealthyRecipeId ->
+                    onNavigateToDetails(selectedHealthyRecipeId)
+                },
             )
         }
     }
@@ -100,6 +112,8 @@ private fun HealthyRecipeList(
 @Composable
 private fun HomeScreenPreview() {
     TabelaNutricionalTheme {
-        HomeScreen()
+        HomeScreen(
+            onNavigateToDetails = {}
+        )
     }
 }
