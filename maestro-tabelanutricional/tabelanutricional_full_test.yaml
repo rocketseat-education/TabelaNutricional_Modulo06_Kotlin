@@ -1,0 +1,7 @@
+appId: com.rocketseat.egitof.tabelanutricional
+---
+- launchApp:
+    clearState: true
+- takeScreenshot: screenshots/01_app_launched
+
+- tapOn: "Salada variada"
