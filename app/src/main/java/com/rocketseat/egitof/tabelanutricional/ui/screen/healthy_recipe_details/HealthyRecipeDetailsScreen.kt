@@ -39,8 +39,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.zIndex
 import com.rocketseat.egitof.tabelanutricional.R
@@ -140,7 +143,7 @@ fun HealthyRecipeDetailsScreen(
                             elevation = sizing.lg,
                             shape = CircleShape,
                             spotColor = Primary
-                        ),
+                        ).semantics { contentDescription = "Adicionar aos favoritos"},
                         isSelected = uiState.isFavorite,
                         onClick = { isSelected ->
                             onEvent(
@@ -186,7 +189,8 @@ fun HealthyRecipeDetailsScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(sizing.x3l)
-                        .padding(horizontal = sizing.md),
+                        .padding(horizontal = sizing.md)
+                        .semantics{ contentDescription = "Mostrar mais detalhes da receita" },
                     text = stringResource(R.string.mais_detalhes),
                     onClick = {
                         showMoreDetails = true
@@ -214,6 +218,7 @@ fun HealthyRecipeDetailsScreen(
                 }
 
                 HealthyRecipeMoreDetailsScreen(
+                    modifier = Modifier.testTag(tag = "MORE_DETAILS_CONTAINER_TAG"),
                     sheetState = moreDetailsSheetState,
                     healthyRecipe = healthyRecipe,
                     onDismiss = {
