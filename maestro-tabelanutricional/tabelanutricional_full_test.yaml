@@ -5,3 +5,23 @@ appId: com.rocketseat.egitof.tabelanutricional
 - takeScreenshot: screenshots/01_app_launched
 
 - tapOn: "Salada variada"
+- waitForAnimationToEnd
+- assertVisible: "Salada variada"
+- assertVisible: "Botão coração não selecionado"
+- takeScreenshot: screenshots/02_recipe_details_screen
+
+- tapOn: "Botão coração não selecionado"
+- scroll
+- tapOn: "Mais detalhes"
+- assertVisible: "Mais detalhes"
+- takeScreenshot: screenshots/03_recipe_more_details_screen
+
+- back
+- scrollUntilVisible:
+      element:
+          text: "Botão voltar"
+      direction: UP
+- tapOn: "Botão voltar"
+- tapOn: "Salada variada"
+- assertVisible: "Botão coração selecionado"
+- takeScreenshot: screenshots/04_recipe_favorite_details_screen

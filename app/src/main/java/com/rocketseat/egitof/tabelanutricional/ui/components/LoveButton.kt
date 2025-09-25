@@ -68,7 +68,9 @@ fun LoveButton(
         Icon(
             modifier = Modifier.scale(scale),
             painter = painterResource(id = if (!isSelected) R.drawable.ic_heart else R.drawable.ic_heart_filled),
-            contentDescription = stringResource(R.string.botao_coracao)
+            contentDescription = stringResource(
+                id = R.string.botao_coracao
+            ) + if (isSelected) " selecionado" else " não selecionado"
         )
     }
 }
